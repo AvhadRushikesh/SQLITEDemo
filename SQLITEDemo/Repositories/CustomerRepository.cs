@@ -37,5 +37,34 @@ namespace SQLITEDemo.Repositories
                 StatusMessage = $"Error: {ex.Message}";
             }
         }
+
+        //  Select / Get Data
+        public List<Customer> GetAll()
+        {
+            try
+            {
+                return connection.Table<Customer>().ToList();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
+            return null;
+        }
+
+        // Get Single Record
+        public Customer Get(int id)
+        {
+            try
+            {
+                return connection.Table<Customer>()
+                    .FirstOrDefault(x => x.ID == id);
+            }
+            catch (Exception)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
+            return null;
+        }
     }
 }
