@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using SQLITEDemo.Abstraction;
+using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,10 @@ namespace SQLITEDemo.MVVM.Models
         public bool IsYoung =>
             Age > 50 ? true : false;
 
+        [ForeignKey(typeof(Passport))]
+        public int PassportId { get; set; }
+
+        [OneToOne]
         public Passport Passport { get; set; }
     }
 }

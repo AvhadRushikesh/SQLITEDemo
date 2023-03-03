@@ -61,6 +61,7 @@ namespace SQLITEDemo.MVVM.ViewModels
         {
             Customers = App.CustomerRepo.GetItems();
             //Customers = App.CustomerRepo.get(x => x.Name.StartsWith("A"));
+            var passport = App.PassportRepo.GetItems();
         }
     }
 }
