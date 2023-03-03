@@ -1,0 +1,22 @@
+﻿using SQLite;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SQLITEDemo
+{
+    public static class Constants
+    {
+        //  The File Name we are going to store in device
+        private const string DBFileName = "SQLite.db3"; 
+
+        //  An enumeration type to specify what is going to be the behavior of the file        
+        public const SQLiteOpenFlags Flags = 
+            SQLiteOpenFlags.ReadWrite | 
+            SQLiteOpenFlags.Create | 
+            SQLiteOpenFlags.SharedCache;
+
+    }
+}
