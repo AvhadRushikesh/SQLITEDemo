@@ -26,5 +26,7 @@ namespace SQLITEDemo.MVVM.Models
         [Ignore]
         public bool IsYoung =>
             Age > 50 ? true : false;
+
+        public Passport Passport { get; set; }
     }
 }
