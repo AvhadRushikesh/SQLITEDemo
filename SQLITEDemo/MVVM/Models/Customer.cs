@@ -30,7 +30,7 @@ namespace SQLITEDemo.MVVM.Models
 
        
 
-        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        [ManyToMany(typeof(Passport), CascadeOperations = CascadeOperation.All)]
         public List<Passport> Passport { get; set; }
     }
 }
