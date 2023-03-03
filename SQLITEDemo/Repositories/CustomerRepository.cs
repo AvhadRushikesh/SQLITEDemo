@@ -23,14 +23,22 @@ namespace SQLITEDemo.Repositories
         }
 
         // Insert Data
-        public void Add(Customer newCustomer)
+        public void AddOrUpdate(Customer Customer)
         {
             int result = 0;
             try
             {
-                result = connection.Insert(newCustomer);    // This is the only required line for insertion
-                StatusMessage =
-                    $"{result} row(s) added";
+                if (Customer.ID != 0)
+                {
+                    result = connection.Update(Customer);   //  Update Record
+                    StatusMessage = $"{result} Row(s) Updated";
+                }
+                else
+                {
+                    result = connection.Insert(Customer);    // Insert Record
+                    StatusMessage =
+                        $"{result} row(s) added";
+                }
             }
             catch (Exception ex)
             {
