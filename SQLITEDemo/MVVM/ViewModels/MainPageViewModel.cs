@@ -20,6 +20,8 @@ namespace SQLITEDemo.MVVM.ViewModels
         // Create Command to Save Customer in local database
         public ICommand AddOrUpdateCommand { get; set; }
 
+        public ICommand DeleteCommand { get; set; }
+
         public MainPageViewModel()
         {
             Refresh();
@@ -30,6 +32,12 @@ namespace SQLITEDemo.MVVM.ViewModels
                 App.CustomerRepo.AddOrUpdate(CurrentCustomer);
                 Console.WriteLine(App.CustomerRepo.StatusMessage);
                 GenerateNewCustomer();
+                Refresh();
+            });
+
+            DeleteCommand = new Command(() =>
+            {
+                App.CustomerRepo.Delete(CurrentCustomer.ID);
                 Refresh();
             });
         }
