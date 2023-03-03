@@ -24,12 +24,13 @@ namespace SQLITEDemo.MVVM.ViewModels
 
         public MainPageViewModel()
         {
+            var orders = App.OrdersRepo.GetItems();
             Refresh();
             GenerateNewCustomer();
 
             AddOrUpdateCommand = new Command(async () =>
             {
-                App.CustomerRepo.AddOrUpdate(CurrentCustomer);
+                App.CustomerRepo.SaveItem(CurrentCustomer);
                 Console.WriteLine(App.CustomerRepo.StatusMessage);
                 GenerateNewCustomer();
                 Refresh();
@@ -37,7 +38,7 @@ namespace SQLITEDemo.MVVM.ViewModels
 
             DeleteCommand = new Command(() =>
             {
-                App.CustomerRepo.Delete(CurrentCustomer.ID);
+                App.CustomerRepo.DeleteItem(CurrentCustomer);
                 Refresh();
             });
         }
@@ -53,8 +54,8 @@ namespace SQLITEDemo.MVVM.ViewModels
 
         private void Refresh()
         {
-            //Customers = App.CustomerRepo.GetAll();
-            Customers = App.CustomerRepo.GetAll(x => x.Name.StartsWith("A"));
+            Customers = App.CustomerRepo.GetItems();
+            //Customers = App.CustomerRepo.get(x => x.Name.StartsWith("A"));
         }
     }
 }

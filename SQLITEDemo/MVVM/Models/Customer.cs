@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SQLITEDemo.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,8 @@ using System.Threading.Tasks;
 namespace SQLITEDemo.MVVM.Models
 {
     [Table("Customers")]
-    public class Customer
+    public class Customer : TableData
     {
-        [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
 
         [Column("name"), Indexed, NotNull]
         public string Name { get; set; }
