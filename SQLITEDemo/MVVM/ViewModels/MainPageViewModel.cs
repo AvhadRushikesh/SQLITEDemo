@@ -53,7 +53,8 @@ namespace SQLITEDemo.MVVM.ViewModels
 
         private void Refresh()
         {
-            Customers = App.CustomerRepo.GetAll();
+            //Customers = App.CustomerRepo.GetAll();
+            Customers = App.CustomerRepo.GetAll(x => x.Name.StartsWith("A"));
         }
     }
 }

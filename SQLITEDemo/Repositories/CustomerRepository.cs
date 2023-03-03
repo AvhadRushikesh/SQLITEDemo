@@ -3,6 +3,7 @@ using SQLITEDemo.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -101,6 +102,20 @@ namespace SQLITEDemo.Repositories
             {
                 StatusMessage = $"Error: {ex.Message}";
             }
+        }
+
+        // Method to make queries with lambda expression more flexible
+        public List<Customer> GetAll(Expression<Func<Customer, bool>> predicate)
+        {
+            try
+            {
+                return connection.Table<Customer>().Where(predicate).ToList();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
+            return null;
         }
     }
 }
