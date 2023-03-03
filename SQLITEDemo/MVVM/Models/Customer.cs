@@ -28,10 +28,9 @@ namespace SQLITEDemo.MVVM.Models
         public bool IsYoung =>
             Age > 50 ? true : false;
 
-        [ForeignKey(typeof(Passport))]
-        public int PassportId { get; set; }
+       
 
-        [OneToOne(CascadeOperations = CascadeOperation.All)]
-        public Passport Passport { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Passport> Passport { get; set; }
     }
 }
