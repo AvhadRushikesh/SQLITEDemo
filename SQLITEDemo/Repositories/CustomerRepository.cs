@@ -12,6 +12,7 @@ namespace SQLITEDemo.Repositories
     {
         //  Create Connection for local database
         SQLiteConnection connection;
+        public string StatusMessage { get; set; }
 
         public CustomerRepository()
         {
@@ -19,6 +20,22 @@ namespace SQLITEDemo.Repositories
                 new SQLiteConnection(Constants.DatabasePath,
                 Constants.Flags);
             connection.CreateTable<Customer>();
+        }
+
+        // Insert Data
+        public void Add(Customer newCustomer)
+        {
+            int result = 0;
+            try
+            {
+                result = connection.Insert(newCustomer);    // This is the only required line for insertion
+                StatusMessage =
+                    $"{result} row(s) added";
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
         }
     }
 }
