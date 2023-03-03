@@ -30,7 +30,8 @@ namespace SQLITEDemo.MVVM.ViewModels
 
             AddOrUpdateCommand = new Command(async () =>
             {
-                App.CustomerRepo.SaveItem(CurrentCustomer);
+                //App.CustomerRepo.SaveItem(CurrentCustomer);
+                App.CustomerRepo.SaveItemWithChildren(CurrentCustomer);
                 Console.WriteLine(App.CustomerRepo.StatusMessage);
                 GenerateNewCustomer();
                 Refresh();
@@ -60,7 +61,6 @@ namespace SQLITEDemo.MVVM.ViewModels
         private void Refresh()
         {
             Customers = App.CustomerRepo.GetItems();
-            //Customers = App.CustomerRepo.get(x => x.Name.StartsWith("A"));
             var passport = App.PassportRepo.GetItems();
         }
     }
