@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SQLITEDemo.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace SQLITEDemo.Repositories
             connection =
                 new SQLiteConnection(Constants.DatabasePath,
                 Constants.Flags);
+            connection.CreateTable<Customer>();
         }
     }
 }
