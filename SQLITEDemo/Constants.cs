@@ -18,5 +18,13 @@ namespace SQLITEDemo
             SQLiteOpenFlags.Create | 
             SQLiteOpenFlags.SharedCache;
 
+        //  Configuration of Database file Path
+        public static string DatabasePath
+        {
+            get
+            {
+                return Path.Combine(FileSystem.AppDataDirectory, DBFileName);
+            }
+        }
     }
 }
