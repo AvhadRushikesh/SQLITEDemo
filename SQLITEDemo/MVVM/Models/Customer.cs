@@ -31,7 +31,8 @@ namespace SQLITEDemo.MVVM.Models
         [ForeignKey(typeof(Passport))]
         public int PassportId { get; set; }
 
-        [OneToOne(CascadeOperations = CascadeOperation.CascadeInsert)]
+        [OneToOne(CascadeOperations = CascadeOperation.CascadeInsert |
+            CascadeOperation.CascadeRead)]
         public Passport Passport { get; set; }
     }
 }

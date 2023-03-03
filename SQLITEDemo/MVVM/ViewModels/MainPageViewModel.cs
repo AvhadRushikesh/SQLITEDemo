@@ -60,7 +60,8 @@ namespace SQLITEDemo.MVVM.ViewModels
 
         private void Refresh()
         {
-            Customers = App.CustomerRepo.GetItems();
+            //Customers = App.CustomerRepo.GetItems();
+            Customers = App.CustomerRepo.GetItemsWithChildren();
             var passport = App.PassportRepo.GetItems();
         }
     }

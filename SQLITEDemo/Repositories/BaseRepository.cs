@@ -21,6 +21,7 @@ namespace SQLITEDemo.Repositories
             connection = new SQLiteConnection(Constants.DatabasePath,
                 Constants.Flags);
             connection.CreateTable<T>();
+            connection.GetAllWithChildren<T>();
         }
 
         public void DeleteItem(T item)
@@ -120,6 +121,19 @@ namespace SQLITEDemo.Repositories
         public void SaveItemWithChildren(T item, bool recursive = false)
         {
             connection.InsertWithChildren(item, recursive);
+        }
+
+        public List<T> GetItemsWithChildren()
+        {
+            try
+            {
+                return connection.GetAllWithChildren<T>().ToList();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
+            return null;
         }
     }
 }
