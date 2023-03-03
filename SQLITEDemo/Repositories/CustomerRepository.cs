@@ -52,7 +52,7 @@ namespace SQLITEDemo.Repositories
             return null;
         }
 
-        // Get Single Record
+        //  Get Single Record
         public Customer Get(int id)
         {
             try
@@ -61,6 +61,20 @@ namespace SQLITEDemo.Repositories
                     .FirstOrDefault(x => x.ID == id);
             }
             catch (Exception)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
+            return null;
+        }
+
+        //  Executing SQL queries for Select Record
+        public List<Customer> GetAll2()
+        {
+            try
+            {
+                return connection.Query<Customer>("SELECT * FROM Customers").ToList();
+            }
+            catch (Exception ex)
             {
                 StatusMessage = $"Error: {ex.Message}";
             }
