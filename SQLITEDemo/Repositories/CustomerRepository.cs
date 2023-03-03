@@ -68,7 +68,7 @@ namespace SQLITEDemo.Repositories
                 return connection.Table<Customer>()
                     .FirstOrDefault(x => x.ID == id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 StatusMessage = $"Error: {ex.Message}";
             }
@@ -87,6 +87,20 @@ namespace SQLITEDemo.Repositories
                 StatusMessage = $"Error: {ex.Message}";
             }
             return null;
+        }
+
+        //  Delete Record / Customer
+        public void Delete(int customerId)
+        {
+            try
+            {
+                var customer = Get(customerId);
+                connection.Delete(customer);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
         }
     }
 }
